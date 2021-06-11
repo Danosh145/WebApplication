@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+<form action="#" th:action="@{/}" th:object="${u}" method="post">
+    <label class="col-2 col-form-label" for="name">Name of University</label>
+    <input class="form-control" type="text" th:field="*{name}" id="name" placeholder="Name">
+    <label class="col-2 col-form-label" for="city">City name</label>
+    <input class="form-control" type="text" th:field="*{city}" id="city" placeholder="City">
+    <label class="col-2 col-form-label" for="foundedAt">Date of foundation</label>
+    <input class="form-control" type="date" th:field="*{foundedAt}" id="foundedAt" placeholder="FoundedAt">
+  <a href="/"><input id="b" class="btn btn-primary" type="submit" value="Add University" disabled="disabled"></a>
+</form>
+</body>
+<script>
+$(document).ready(function (){
+    validate();
+    $('#name, #city, #foundedAt').change(validate);
+});
+
+function validate(){
+    if ($('#name').val().length   >   0   &&
+        $('#city').val().length  >   0   &&
+        $('#foundedAt').val().length    >   0) {
+        $("input[type=submit]").prop("disabled", false);
+    }
+    else {
+        $("input[type=submit]").prop("disabled", true);
+    }
+}
+</script>
+</html>
